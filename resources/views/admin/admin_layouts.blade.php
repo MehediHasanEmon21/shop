@@ -37,6 +37,7 @@
     <link href="{{asset('public/backend/lib/rickshaw/rickshaw.min.css')}}" rel="stylesheet">
     <link href="{{asset('public/backend/lib/datatables/jquery.dataTables.css')}}" rel="stylesheet">
     <link href="{{asset('public/backend/lib/select2/css/select2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('public/backend/lib/summernote/summernote-bs4.css') }}" rel="stylesheet">
 
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{asset('public/backend/css/starlight.css')}}">
@@ -91,6 +92,18 @@
           <li class="nav-item"><a href="{{ route('admin.categories') }}" class="nav-link">Category</a></li>
           <li class="nav-item"><a href="{{ route('admin.subcategories') }}" class="nav-link">Sub Category</a></li>
           <li class="nav-item"><a href="{{ route('admin.brands') }}" class="nav-link">Brand</a></li>
+        </ul>
+
+          <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+            <span class="menu-item-label">Products</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="{{ route('admin.product') }}" class="nav-link">All Product</a></li>
+          <li class="nav-item"><a href="{{ route('admin.product.create') }}" class="nav-link">Add Product</a></li>
         </ul>
 
         <a href="#" class="sl-menu-link">
@@ -390,7 +403,25 @@
     @stack('js')
     <script src="{{asset('public/backend/lib/datatables/jquery.dataTables.js')}}"></script>
     <script src="{{asset('public/backend/lib/datatables-responsive/dataTables.responsive.js')}}"></script>
-  
+    <script src="{{ asset('public/backend/lib/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('public/backend/lib/medium-editor/medium-editor.js') }}"></script>
+
+    
+    <script>
+      $(function(){
+        'use strict';
+
+        // Inline editor
+        var editor = new MediumEditor('.editable');
+
+        // Summernote editor
+        $('#summernote').summernote({
+          height: 150,
+          tooltip: false
+        })
+      });
+    </script>
+
 
     <script>
       $(function(){
