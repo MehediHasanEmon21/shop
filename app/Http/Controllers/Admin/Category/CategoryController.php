@@ -40,7 +40,7 @@ class CategoryController extends Controller
 
     	$category = new Category();
     	$category->category_name = $request->category_name;
-    	$category->slug = $slug;
+    	$category->slug = preg_replace("/\//", "-", $slug);
     	$category->save();
     	$notification=array(
                     'messege'=>'Category Added Successfully',
@@ -67,7 +67,7 @@ class CategoryController extends Controller
 
         $category = Category::findorfail($request->category_id);
         $category->category_name = $request->category_name;
-        $category->slug = $slug;
+        $category->slug = preg_replace("/\//", "-", $slug);
         $category->save();
         $notification=array(
                     'messege'=>'Category Updated Successfully',

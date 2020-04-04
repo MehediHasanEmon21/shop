@@ -67,6 +67,34 @@ Route::post('update/product/image/{id}','Admin\ProductController@update_image')-
 	//get subcategory
 	 Route::get('/get/subcategory/{category_id}','Admin\ProductController@getSubcategory');
 
+   //blog routes
+Route::get('admin/add/post', 'Admin\PostController@create')->name('add.blogpost');
+Route::post('admin/store/post', 'Admin\PostController@store')->name('store.post');
+Route::get('admin/all/post', 'Admin\PostController@index')->name('all.blogpost');
+Route::get('delete/post/{id}','Admin\PostController@destroy');
+Route::get('edit/post/{id}','Admin\PostController@edit');
+Route::post('update/post/{id}','Admin\PostController@update');
+
+
+
+View::composer('layouts.include.left_sidebar',function($view){
+	$categories = DB::table('categories')->get();
+	foreach ($categories as $key => $category) {
+		
+		$subcategories = DB::table('sub_categories')->where('category_id', $category->id)->get();
+		$category->subcategories = $subcategories;
+
+
+	}
+	$view->with('categories',$categories);
+});
+
+View::composer('layouts.include.banner',function($view){
+	$product = DB::table('products')->where('main_slider',1)->orderBy('id','DESC')->first();
+	$view->with('product',$product);
+});
+
+
 
 
 

@@ -429,6 +429,7 @@ class ComposerStaticInite3bae772c4b322f01cd1c02f89ef47e9
         'App\\Admin\\Model\\Brand' => __DIR__ . '/../..' . '/app/Admin/Model/Brand.php',
         'App\\Admin\\Model\\Category' => __DIR__ . '/../..' . '/app/Admin/Model/Category.php',
         'App\\Admin\\Model\\Coupon' => __DIR__ . '/../..' . '/app/Admin/Model/Coupon.php',
+        'App\\Admin\\Model\\Post' => __DIR__ . '/../..' . '/app/Admin/Model/Post.php',
         'App\\Admin\\Model\\Product' => __DIR__ . '/../..' . '/app/Admin/Model/Product.php',
         'App\\Admin\\Model\\SubCategory' => __DIR__ . '/../..' . '/app/Admin/Model/SubCategory.php',
         'App\\Admin\\Newslater' => __DIR__ . '/../..' . '/app/Admin/Newslater.php',

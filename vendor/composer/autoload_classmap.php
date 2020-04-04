@@ -10,6 +10,7 @@ return array(
     'App\\Admin\\Model\\Brand' => $baseDir . '/app/Admin/Model/Brand.php',
     'App\\Admin\\Model\\Category' => $baseDir . '/app/Admin/Model/Category.php',
     'App\\Admin\\Model\\Coupon' => $baseDir . '/app/Admin/Model/Coupon.php',
+    'App\\Admin\\Model\\Post' => $baseDir . '/app/Admin/Model/Post.php',
     'App\\Admin\\Model\\Product' => $baseDir . '/app/Admin/Model/Product.php',
     'App\\Admin\\Model\\SubCategory' => $baseDir . '/app/Admin/Model/SubCategory.php',
     'App\\Admin\\Newslater' => $baseDir . '/app/Admin/Newslater.php',
