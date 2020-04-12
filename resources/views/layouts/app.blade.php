@@ -6,21 +6,29 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/bootstrap4/bootstrap.min.css')}}">
-<link href="{{asset('public/frontend/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="{{asset('public/frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('public/frontend/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('public/frontend/plugins/OwlCarousel2-2.2.1/animate.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('public/frontend/plugins/slick-1.8.0/slick.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/main_styles.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/responsive.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/bootstrap4/bootstrap.min.css')}}">
+<link href="{{asset('frontend/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/OwlCarousel2-2.2.1/animate.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/slick-1.8.0/slick.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/main_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/responsive.css')}}">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/product_styles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/product_responsive.css') }}">
+
+
+
 
 </head>
 
 <body>
 
-<div class="super_container">
+<div class="super_container"
     
     <!-- Header -->
     
@@ -32,18 +40,23 @@
             <div class="container">
                 <div class="row">
                     <div class="col d-flex flex-row">
-                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="public/frontend/images/phone.png" alt=""></div>+38 068 005 3570</div>
-                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="public/frontend/images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/frontend/images/phone.png" alt=""></div>+38 068 005 3570</div>
+                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/frontend/images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
                         <div class="top_bar_content ml-auto">
                             <div class="top_bar_menu">
+                                @php
+
+                                    $language = session()->get('language');
+
+                                @endphp
                                 <ul class="standard_dropdown top_bar_dropdown">
                                     <li>
-                                        <a href="#">English<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="#">Italian</a></li>
-                                            <li><a href="#">Spanish</a></li>
-                                            <li><a href="#">Japanese</a></li>
-                                        </ul>
+                                        @if($language == 'bangla')
+                                            <a href="{{ route('language.english') }}">English<i class="fas fa-chevron-down"></i></a>
+                                        @else
+                                            <a href="{{ route('language.bangla') }}">Bangla<i class="fas fa-chevron-down"></i></a>
+                                        @endif
+                                        
                                     </li>
                                     <li>
                                         <a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
@@ -56,9 +69,31 @@
                                 </ul>
                             </div>
                             <div class="top_bar_user">
-                                <div class="user_icon"><img src="public/frontend/images/user.svg" alt=""></div>
-                                <div><a href="#">Register</a></div>
-                                <div><a href="#">Sign in</a></div>
+                                @guest
+                                <div><a href="{{ route('login') }}">
+                                   @if($language == 'bangla')
+                                        রেজিস্টার / লগইন 
+                                   @else
+                                        Register / Login
+                                   @endif
+                                     
+                                              
+                              </a></div>
+                                @else
+                                <ul class="standard_dropdown top_bar_dropdown">
+                                    <li>
+                                        <a href="{{ route('home') }}"><div class="user_icon"><img src="{{ asset('/frontend/images/user.svg') }}" alt=""></div>
+                                            Profile<i class="fas fa-chevron-down"></i></a>
+                                        <ul>
+                                            <li><a href="">Wishlist</a></li>
+                                            <li><a href="{{ route('user.checkout') }}">Checkout</a></li>
+                                            <li><a href="#">Extra</a></li>
+                                        </ul>
+                                    </li>
+                           
+                                </ul>
+                                @endguest
+
                             </div>
                         </div>
                     </div>
@@ -75,7 +110,14 @@
                     <!-- Logo -->
                     <div class="col-lg-2 col-sm-3 col-3 order-1">
                         <div class="logo_container">
-                            <div class="logo"><a href="#">OneTech</a></div>
+                            <div class="logo"><a href="{{url('/')}}">
+                            @if(session()->get('language') == 'bangla')
+                             অনটেক
+                            @else
+                             OneTech
+                            @endif
+
+                        </a></div>
                         </div>
                     </div>
 
@@ -100,37 +142,55 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <button type="submit" class="header_search_button trans_300" value="Submit"><img src="public/frontend/images/search.png" alt=""></button>
+                                        <button type="submit" class="header_search_button trans_300" value="Submit"><img src="/frontend/images/search.png" alt=""></button>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                    @php
 
+                    $wishlist_count = DB::table('wishlists')->where('user_id',Auth::id())->count();
+
+                    @endphp
                     <!-- Wishlist -->
                     <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
                         <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+                            @guest
+
+                            @else
+
+
+
                             <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                                <div class="wishlist_icon"><img src="public/frontend/images/heart.png" alt=""></div>
+                                <div class="wishlist_icon"><img src="/frontend/images/heart.png" alt=""></div>
                                 <div class="wishlist_content">
                                     <div class="wishlist_text"><a href="#">Wishlist</a></div>
-                                    <div class="wishlist_count">115</div>
+                                    <div class="wishlist_count" id="wishlist_count">{{ $wishlist_count }}</div>
                                 </div>
                             </div>
 
+                            @endguest
+                          
+
                             <!-- Cart -->
-                            <div class="cart">
+                            <a href="{{ route('show.cart') }}">
+                                
+                                <div class="cart">
                                 <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                     <div class="cart_icon">
-                                        <img src="public/frontend/images/cart.png" alt="">
-                                        <div class="cart_count"><span>10</span></div>
+                                        <img src="/frontend/images/cart.png" alt="">
+                                        <div class="cart_count" id="cart_total"><span>{{ Cart::count() }}</span></div>
                                     </div>
                                     <div class="cart_content">
                                         <div class="cart_text"><a href="#">Cart</a></div>
-                                        <div class="cart_price">$85</div>
+                                        <div class="cart_price">${{Cart::subtotal()}}</div>
                                     </div>
                                 </div>
                             </div>
+
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -153,7 +213,8 @@
                                     <div class="cat_burger"><span></span><span></span><span></span></div>
                                     <div class="cat_menu_text">categories</div>
                                 </div>
-                                @include('layouts.include.left_sidebar')
+                                @yield('left_sidebar')
+                                
                               
                             </div>
 
@@ -305,8 +366,8 @@
                             </ul>
                             
                             <div class="menu_contact">
-                                <div class="menu_contact_item"><div class="menu_contact_icon"><img src="public/frontend/images/phone_white.png" alt=""></div>+38 068 005 3570</div>
-                                <div class="menu_contact_item"><div class="menu_contact_icon"><img src="public/frontend/images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                                <div class="menu_contact_item"><div class="menu_contact_icon"><img src="/frontend/images/phone_white.png" alt=""></div>+38 068 005 3570</div>
+                                <div class="menu_contact_item"><div class="menu_contact_icon"><img src="/frontend/images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
                             </div>
                         </div>
                     </div>
@@ -317,7 +378,9 @@
     </header>
     
     <!-- Banner -->
-    @include('layouts.include.banner')
+    @yield('banner')
+    
+
 
     @yield('content')
 
@@ -329,7 +392,7 @@
                 <div class="col">
                     <div class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
                         <div class="newsletter_title_container">
-                            <div class="newsletter_icon"><img src="public/frontend/images/send.png" alt=""></div>
+                            <div class="newsletter_icon"><img src="/frontend/images/send.png" alt=""></div>
                             <div class="newsletter_title">Sign up for Newsletter</div>
                             <div class="newsletter_text"><p>...and receive %20 coupon for first shopping.</p></div>
                         </div>
@@ -438,10 +501,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 </div>
                         <div class="logos ml-sm-auto">
                             <ul class="logos_list">
-                                <li><a href="#"><img src="public/frontend/images/logos_1.png" alt=""></a></li>
-                                <li><a href="#"><img src="public/frontend/images/logos_2.png" alt=""></a></li>
-                                <li><a href="#"><img src="public/frontend/images/logos_3.png" alt=""></a></li>
-                                <li><a href="#"><img src="public/frontend/images/logos_4.png" alt=""></a></li>
+                                <li><a href="#"><img src="/frontend/images/logos_1.png" alt=""></a></li>
+                                <li><a href="#"><img src="/frontend/images/logos_2.png" alt=""></a></li>
+                                <li><a href="#"><img src="/frontend/images/logos_3.png" alt=""></a></li>
+                                <li><a href="#"><img src="/frontend/images/logos_4.png" alt=""></a></li>
                             </ul>
                         </div>
                     </div>
@@ -451,23 +514,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </div>
 </div>
 
-<script src="{{asset('public/frontend/js/jquery-3.3.1.min.js')}}"></script>
-<script src="{{asset('public/frontend/styles/bootstrap4/popper.js')}}"></script>
-<script src="{{asset('public/frontend/styles/bootstrap4/bootstrap.min.js')}}"></script>
-<script src="{{asset('public/frontend/plugins/greensock/TweenMax.min.js')}}"></script>
-<script src="{{asset('public/frontend/plugins/greensock/TimelineMax.min.js')}}"></script>
-<script src="{{asset('public/frontend/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
-<script src="{{asset('public/frontend/plugins/greensock/animation.gsap.min.js')}}"></script>
-<script src="{{asset('public/frontend/plugins/greensock/ScrollToPlugin.min.js')}}"></script>
-<script src="{{asset('public/frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
-<script src="{{asset('public/frontend/plugins/slick-1.8.0/slick.js')}}"></script>
-<script src="{{asset('public/frontend/plugins/easing/easing.js')}}"></script>
+<script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('frontend/styles/bootstrap4/popper.js')}}"></script>
+<script src="{{asset('frontend/styles/bootstrap4/bootstrap.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/greensock/TweenMax.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/greensock/TimelineMax.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/greensock/animation.gsap.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/greensock/ScrollToPlugin.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
+<script src="{{asset('frontend/plugins/slick-1.8.0/slick.js')}}"></script>
+<script src="{{asset('frontend/plugins/easing/easing.js')}}"></script>
+
+
+
+<script src="{{asset('frontend/js/custom.js')}}"></script>
+<script src="{{ asset('frontend/js/product_custom.js') }}"></script>
+<script src="{{asset('frontend/js/script.js')}}"></script>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-<script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
-
-<script src="{{asset('public/frontend/js/custom.js')}}"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+ <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
 <script>
         @if(Session::has('messege'))
           var type="{{Session::get('alert-type','info')}}"

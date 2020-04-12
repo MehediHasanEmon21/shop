@@ -39,7 +39,7 @@ $(document).ready(function()
 	initBrandsSlider();
 	initQuantity();
 	initColor();
-	initFavs();
+
 	initImage();
 
 	$(window).on('resize', function()
@@ -380,15 +380,15 @@ $(document).ready(function()
 
 	*/
 
-	function initFavs()
-	{
-		// Handle Favorites
-		var fav = $('.product_fav');
-		fav.on('click', function()
-		{
-			fav.toggleClass('active');
-		});
-	}
+	// function initFavs()
+	// {
+	// 	// Handle Favorites
+	// 	var fav = $('.product_fav');
+	// 	fav.on('click', function()
+	// 	{
+	// 		fav.toggleClass('active');
+	// 	});
+	// }
 
 	/* 
 

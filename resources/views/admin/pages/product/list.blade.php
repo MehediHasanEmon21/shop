@@ -25,17 +25,17 @@
           </h6>
           
           <div class="table-wrapper">
-            <table id="datatable1" class="table display responsive nowrap">
+            <table id="datatable1" class="table display responsive">
               <thead>
                 <tr>
-                  <th class="wd-15p">Product ID</th>
+                  <th class="wd-5p">Product ID</th>
                   <th class="wd-15p">Product Name</th>
                   <th class="wd-15p">Image</th>
-                  <th class="wd-15p">Category </th>
-                  <th class="wd-15p">Brand</th>
-                  <th class="wd-15p">Quantity</th>
-                  <th class="wd-15p">Status</th>
-                  <th class="wd-20p">Action</th>
+                  <th class="wd-10p">Category </th>
+                  <th class="wd-10p">Brand</th>
+                  <th class="wd-10p">Quantity</th>
+                  <th class="wd-10p">Status</th>
+                  <th class="wd-25p">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -96,7 +96,7 @@
 
 @push('js')
 
-<script src="{{asset('public/backend/custom/category.js')}}" ></script>
+<script src="{{asset('backend/custom/category.js')}}" ></script>
 
 @endpush
 

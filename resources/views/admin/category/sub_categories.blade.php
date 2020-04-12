@@ -147,7 +147,7 @@
 
 @push('js')
 
-<script src="{{asset('public/backend/custom/sub_category.js')}}" ></script>
+<script src="{{asset('backend/custom/sub_category.js')}}" ></script>
 
 @endpush
 

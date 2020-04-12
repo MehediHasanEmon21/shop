@@ -185,7 +185,7 @@
 
                   <div class="col-lg-4">
                     <label class="ckbox">
-                      <input type="checkbox" name="buyone_getone" value="1">
+                      <input type="checkbox" name="buyone_getone" value="1" {{ $data['product']->hot_new == 1 ? 'checked' : ''}}>
                       <span>Buy One Get One</span>
                     </label>
                   </div>

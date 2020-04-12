@@ -4,7 +4,7 @@
 
 Route::get('/','Frontend\HomeController@index');
 //auth & user
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/password-change', 'HomeController@changePassword')->name('password.change');
 Route::post('/password-update', 'HomeController@updatePassword')->name('password.update');
@@ -77,6 +77,7 @@ Route::post('update/post/{id}','Admin\PostController@update');
 
 
 
+
 View::composer('layouts.include.left_sidebar',function($view){
 	$categories = DB::table('categories')->get();
 	foreach ($categories as $key => $category) {
@@ -102,7 +103,38 @@ View::composer('layouts.include.banner',function($view){
 
 
 
+
+
+
+
+
+
 	//Frontend Section
 
 //newslatters
 Route::post('/newslatters/store','Admin\NewslatterController@store')->name('newslatter.store');
+
+
+//cat routes
+Route::get('/check', 'Frontend\CartController@allCart')->name('all.cart');
+
+//google login
+Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
+Route::get('/callback/{provider}', 'SocialController@callback');
+
+//product routes
+Route::get('/product/{slug}', 'Frontend\ProductController@show_product')->name('product.details');
+Route::post('/cart/product/add/{id}', 'Frontend\ProductController@AddCart');
+
+//cart routes
+Route::get('/show-cart', 'Frontend\CartController@show_cart')->name('show.cart');
+Route::post('insert/into/cart/','Frontend\CartController@InsertCart')->name('insert.into.cart');
+Route::post('update/cart','Frontend\CartController@updatetCart')->name('update.cartitem');
+Route::get('delete/cart/{rowId}','Frontend\CartController@deleteCart')->name('cart.delete');
+Route::get('checkout','Frontend\CartController@show_checkout')->name('user.checkout');
+Route::post('apply/coupon','Frontend\CartController@apply_coupon')->name('apply.coupon');
+Route::get('destroy/coupon','Frontend\CartController@destroy_coupon')->name('destroy.coupon');
+
+//language routes
+Route::get('/language/bangla', 'Frontend\LanguageController@bangla')->name('language.bangla');
+Route::get('/language/english', 'Frontend\LanguageController@english')->name('language.english');

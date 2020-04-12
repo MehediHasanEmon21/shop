@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -28,8 +29,8 @@ class ProductController extends Controller
     }
 
     public function create(){
-    	$categories = DB::table('categories')->get();
-    	$brands = DB::table('brands')->get();
+    	$categories = DB::table('categories')->orderBy('category_name','ASC')->get();
+    	$brands = DB::table('brands')->orderBy('brand_name','ASC')->get();
     	return view('admin.pages.product.create',compact('categories','brands'));
     }
 
@@ -43,6 +44,17 @@ class ProductController extends Controller
     public function store(Request $request){
 
         $product = new Product();
+
+        $name_list =  explode(" ", $request->product_name);
+        $name_list = array_map('strtolower', $name_list);
+        $product_slug = implode("-", $name_list);
+        $similar_slug = DB::table('products')->where('slug', 'like', $product_slug.'%')->get();
+        if(count($similar_slug) > 0){
+            $slug = $product_slug.'-'.Str::random(10);
+        }
+        else{
+            $slug = $product_slug;
+        }
 
         $product->product_name = $request->product_name;
         $product->product_code = $request->product_code;
@@ -61,6 +73,8 @@ class ProductController extends Controller
         $product->trend = $request->trend;
         $product->mid_slider = $request->mid_slider;
         $product->hot_new = $request->hot_new;
+        $product->buyone_getone = $request->buyone_getone;
+        $product->slug = $slug;
 
         $image_one = $request->file('image_one');
         $image_two = $request->file('image_two');
@@ -173,6 +187,18 @@ class ProductController extends Controller
 
         $product =  Product::find($id);
 
+
+        $name_list =  explode(" ", $request->product_name);
+        $name_list = array_map('strtolower', $name_list);
+        $product_slug = implode("-", $name_list);
+        $similar_slug = DB::table('products')->where('slug', 'like', $product_slug.'%')->get();
+        if(count($similar_slug) > 0){
+            $slug = $product_slug.'-'.Str::random(10);
+        }
+        else{
+            $slug = $product_slug;
+        }
+
         $product->product_name = $request->product_name;
         $product->product_code = $request->product_code;
         $product->product_quantity = $request->product_quantity;
@@ -182,6 +208,7 @@ class ProductController extends Controller
         $product->product_size = $request->product_size;
         $product->product_color = $request->product_color;
         $product->selling_price = $request->selling_price;
+        $product->discount_price = $request->discount_price;
         $product->product_details = $request->product_details;
         $product->video_link = $request->video_link;
         $product->main_slider = $request->main_slider;
@@ -190,6 +217,8 @@ class ProductController extends Controller
         $product->trend = $request->trend;
         $product->mid_slider = $request->mid_slider;
         $product->hot_new = $request->hot_new;
+        $product->buyone_getone = $request->buyone_getone;
+        $product->slug = $slug;
 
         $up = $product->save();
 

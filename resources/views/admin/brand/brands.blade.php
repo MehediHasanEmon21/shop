@@ -135,7 +135,7 @@
 
 @push('js')
 
-<script src="{{asset('public/backend/custom/brand.js')}}" ></script>
+<script src="{{asset('backend/custom/brand.js')}}" ></script>
 
 @endpush
 

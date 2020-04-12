@@ -17,4 +17,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//wishlists
+Route::post('/add/wishlist','WishlistController@addFavourite')->name('add.wishlist');
+
+Route::post('/cart/add','Frontend\CartController@addCart')->name('add.cart');
+
+Route::post('/product/view','Frontend\ProductController@viewProduct');
+
+
+
 

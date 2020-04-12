@@ -51,7 +51,7 @@ $(document).ready(function()
 	featuredSliderZIndex();
 	initPopularSlider();
 	initBanner2Slider();
-	initFavs();
+	// initFavs();
 	initArrivalsSlider();
 	arrivalsSliderZIndex();
 	bestsellersSlider();
@@ -475,19 +475,19 @@ $(document).ready(function()
 
 	*/
 
-	function initFavs()
-	{
-		// Handle Favorites
-		var items = document.getElementsByClassName('product_fav');
-		for(var x = 0; x < items.length; x++)
-		{
-			var item = items[x];
-			item.addEventListener('click', function(fn)
-			{
-				fn.target.classList.toggle('active');
-			});
-		}
-	}
+	// function initFavs()
+	// {
+	// 	// Handle Favorites
+	// 	var items = document.getElementsByClassName('product_fav');
+	// 	for(var x = 0; x < items.length; x++)
+	// 	{
+	// 		var item = items[x];
+	// 		item.addEventListener('click', function(fn)
+	// 		{
+	// 			fn.target.classList.toggle('active');
+	// 		});
+	// 	}
+	// }
 
 	/* 
 
@@ -993,7 +993,7 @@ $(document).ready(function()
 				    // find the amount of "seconds" between now and target
 				    var current_date = new Date().getTime();
 				    var seconds_left = (target_date - current_date) / 1000;
-				    console.log(seconds_left);
+				    // console.log(seconds_left);
 				 
 				    // do some time calculations
 				    days = parseInt(seconds_left / 86400);
