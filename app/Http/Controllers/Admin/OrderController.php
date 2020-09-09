@@ -27,16 +27,39 @@ class OrderController extends Controller
     {
         $order = DB::table('orders')
             ->join('users', 'orders.user_id', 'users.id')
-            ->select('orders.*', 'users.name', 'users.email')
-            ->where('orders.status', 0)
-            ->orderBy('id', 'DESC')
-            ->get();
+            ->select('orders.*', 'users.name', 'users.email', 'users.phone')
+            ->orderBy('orders.id', 'DESC')
+            ->first();
         $orders = DB::table('order_details')
             ->join('products', 'order_details.product_id', 'products.id')
-            ->select('order_details.*', 'products.product_code')
+            ->select('order_details.*', 'products.product_code', 'products.product_name')
             ->where('order_details.order_id', $id)
             ->get();
         $shipping = DB::table('shippings')->where('order_id', $id)->first();
-        dd($shipping);
+
+
+        return view('admin.order.detail', compact('order', 'orders', 'shipping'));
+    }
+
+    public function confirmOrder($id)
+    {
+
+        $order = DB::table('orders')->where('id', $id)->update(['status' => 1]);
+        $notification = array(
+            'messege' => 'Order Confirm Successfully',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+
+    public function cancelOrder($id)
+    {
+
+        $order = DB::table('orders')->where('id', $id)->update(['status' => 4]);
+        $notification = array(
+            'messege' => 'Order Cancel Successfully',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
     }
 }

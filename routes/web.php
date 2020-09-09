@@ -78,6 +78,8 @@ Route::post('update/post/{id}', 'Admin\PostController@update');
 ////oreder routes
 Route::get('admin/pending/order', 'Admin\OrderController@pending')->name('pending.order');
 Route::get('admin/order/detail/{id}', 'Admin\OrderController@detail')->name('order.detail');
+Route::get('admin/order/confirm/{id}', 'Admin\OrderController@confirmOrder')->name('order.confirm');
+Route::get('admin/order/cancel/{id}', 'Admin\OrderController@cancelOrder')->name('order.cancel');
 
 
 
