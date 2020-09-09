@@ -1,5 +1,5 @@
 
-    <div class="banner">
+<div class="banner">
         <div class="banner_background" style="background-image:url(public/frontend/images/banner_background.jpg)"></div>
         <div class="container fill_height">
             <div class="row fill_height">
@@ -19,5 +19,6 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
+
 

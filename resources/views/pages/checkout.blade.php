@@ -121,11 +121,13 @@
 						
 					
 
-						<div class="cart_buttons">
-							{{-- <button type="button" class="button cart_button_clear">Add to Cart</button>
-							<a href="{{ route('user.checkout') }}" class="button cart_button_checkout">Checkout</a> --}}
-						</div>
+						
 					</div>
+					
+				</div>
+				<div class="cart_buttons" style="float: right">
+							<button type="button" class="button cart_button_clear">Add to Cart</button>
+							<a href="{{ route('payment.page') }}" class="button cart_button_checkout">Final Step</a>
 				</div>
 			</div>
 		</div>

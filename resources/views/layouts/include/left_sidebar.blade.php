@@ -1,12 +1,4 @@
   <ul class="cat_menu">
-
-    {{-- @php
-
-    echo "<pre>";
-    print_r($categories);
-    echo "</pre>";
-
-    @endphp --}}
     
     @foreach($categories as $category)
     <li class="hassubs">

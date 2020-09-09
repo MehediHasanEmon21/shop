@@ -84,5 +84,28 @@ class ProductController extends Controller
 
     }
 
+    public function categoryProduct($slug){
+
+      $category = DB::table('categories')->where('slug',$slug)->first();
+      $category_id = $category->id;
+
+      $products = DB::table('products')->where('category_id',$category_id)->paginate(15);
+
+      return view('pages.products',compact('products'));
+
+    }
+
+    public function subCategoryProduct($slug){
+
+      $subcategory = DB::table('sub_categories')->where('slug',$slug)->first();
+      $subcategory_id = $subcategory->id;
+
+      $products = DB::table('products')->where('subcategory_id',$subcategory_id)->paginate(15);
+
+      return view('pages.products',compact('products'));
+
+    }
+
+
 
 }

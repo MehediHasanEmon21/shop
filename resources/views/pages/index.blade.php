@@ -2,18 +2,15 @@
 
 @section('title','Home')
 
-@section('left_sidebar')
-@include('layouts.include.left_sidebar')
-@endsection
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-@section('banner')
 
-    @include('layouts.include.banner')
 
-@endsection
+{{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> --}}
+
 
 @section('content')
 <!-- Characteristics -->
+    
+    @include('layouts.include.banner')
 
     <div class="characteristics">
         <div class="container">

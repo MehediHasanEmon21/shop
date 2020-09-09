@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/OwlCarousel2-2.2.1/animate.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/slick-1.8.0/slick.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/plugins/jquery-ui-1.12.1.custom/jquery-ui.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/main_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/responsive.css')}}">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
@@ -20,6 +21,39 @@
 
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/product_styles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/product_responsive.css') }}">
+
+<script src="https://js.stripe.com/v3/"></script>
+
+
+<script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('frontend/styles/bootstrap4/popper.js')}}"></script>
+<script src="{{asset('frontend/styles/bootstrap4/bootstrap.min.js')}}"></script>
+
+@php
+
+$route = Route::current()->getName();
+
+@endphp
+
+
+<style type="text/css">
+    
+  
+    @if($route == 'index')
+
+    .cat_menu {
+
+        visibility: visible !important;
+        opacity: 1 !important;
+
+    }
+
+    @endif
+    
+
+
+
+</style>
 
 
 
@@ -213,7 +247,7 @@
                                     <div class="cat_burger"><span></span><span></span><span></span></div>
                                     <div class="cat_menu_text">categories</div>
                                 </div>
-                                @yield('left_sidebar')
+                                @include('layouts.include.left_sidebar')
                                 
                               
                             </div>
@@ -376,9 +410,8 @@
         </div>
 
     </header>
-    
-    <!-- Banner -->
-    @yield('banner')
+
+
     
 
 
@@ -514,9 +547,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </div>
 </div>
 
-<script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
-<script src="{{asset('frontend/styles/bootstrap4/popper.js')}}"></script>
-<script src="{{asset('frontend/styles/bootstrap4/bootstrap.min.js')}}"></script>
+
 <script src="{{asset('frontend/plugins/greensock/TweenMax.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/greensock/TimelineMax.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>

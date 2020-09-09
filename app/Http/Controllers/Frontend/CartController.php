@@ -151,7 +151,7 @@ class CartController extends Controller
                     'messege'=>'Login First',
                      'alert-type'=>'error'
                      );
-        return Redirect()->back()->with($notification);
+        return Redirect()->route('login')->with($notification);
 
       }
 
