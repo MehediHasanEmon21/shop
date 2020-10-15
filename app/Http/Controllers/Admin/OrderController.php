@@ -23,6 +23,46 @@ class OrderController extends Controller
         return view('admin.order.pending_order', compact('orders'));
     }
 
+     public function accept()
+    {
+
+        $orders = DB::table('orders')
+            ->join('users', 'orders.user_id', 'users.id')
+            ->select('orders.*', 'users.name')
+            ->where('orders.status', 1)->orderBy('id', 'DESC')->get();
+        return view('admin.order.pending_order', compact('orders'));
+    }
+
+     public function progress()
+    {
+
+        $orders = DB::table('orders')
+            ->join('users', 'orders.user_id', 'users.id')
+            ->select('orders.*', 'users.name')
+            ->where('orders.status',2 )->orderBy('id', 'DESC')->get();
+        return view('admin.order.pending_order', compact('orders'));
+    }
+
+     public function delivered()
+    {
+
+        $orders = DB::table('orders')
+            ->join('users', 'orders.user_id', 'users.id')
+            ->select('orders.*', 'users.name')
+            ->where('orders.status', 3)->orderBy('id', 'DESC')->get();
+        return view('admin.order.pending_order', compact('orders'));
+    }
+
+     public function cancel()
+    {
+
+        $orders = DB::table('orders')
+            ->join('users', 'orders.user_id', 'users.id')
+            ->select('orders.*', 'users.name')
+            ->where('orders.status', 4)->orderBy('id', 'DESC')->get();
+        return view('admin.order.pending_order', compact('orders'));
+    }
+
     public function detail($id)
     {
         $order = DB::table('orders')
@@ -49,7 +89,28 @@ class OrderController extends Controller
             'messege' => 'Order Confirm Successfully',
             'alert-type' => 'success'
         );
-        return Redirect()->back()->with($notification);
+        return Redirect()->route('pending.accept')->with($notification);
+    }
+
+    public function orderProgress($id){
+
+            $order = DB::table('orders')->where('id', $id)->update(['status' => 2]);
+            $notification = array(
+                'messege' => 'Order Progress in Deliverhy',
+                'alert-type' => 'success'
+            );
+            return Redirect()->route('pending.progress')->with($notification);
+    }
+
+    public function orderDeliveredrder($id){
+
+        $order = DB::table('orders')->where('id', $id)->update(['status' => 3]);
+            $notification = array(
+                'messege' => 'Order Delivered Successfully',
+                'alert-type' => 'success'
+            );
+            return Redirect()->route('pending.delivered')->with($notification);
+
     }
 
     public function cancelOrder($id)
@@ -60,6 +121,6 @@ class OrderController extends Controller
             'messege' => 'Order Cancel Successfully',
             'alert-type' => 'success'
         );
-        return Redirect()->back()->with($notification);
+        return Redirect()->back('pending.cancel')->with($notification);
     }
 }

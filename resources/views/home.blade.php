@@ -10,7 +10,6 @@
                    <thead>
                      <tr>
                        <th scope="col">PaymentType</th>
-                       <th scope="col">Payment ID</th>
                        <th scope="col">Amount</th>
                        <th scope="col">Date</th>
                         <th scope="col">Status Code</th>
@@ -19,6 +18,30 @@
                      </tr>
                    </thead>
                    <tbody>
+                   
+                    @foreach($orders as $order)
+                    <tr>
+                      <td>{{ $order->payment_type }}</td>
+                      <td>{{ $order->total }}</td>
+                      <td>{{ $order->date }}</td>
+                      <td>{{ $order->status_code }}</td>
+                      <td>
+                        @if ($order->status == 0)
+                            <span class="badge badge-danger">Pending</span>
+                        @elseif($order->status == 1)
+                            <span class="badge badge-success">Payment Accept</span>
+                        @elseif($order->status == 2)
+                            <span class="badge badge-info">Progress</span>
+                        @elseif($order->status == 3)
+                            <span class="badge badge-warning">Delivered</span>
+                        @else
+                            <span class="badge badge-success">Cancel</span>
+                        @endif
+                      </td>
+                      <td><a href="javascript:void();" class="btn btn-sm btn-success">View</a></td>
+
+                    </tr>
+                    @endforeach
                
                    </tbody>
                  </table>

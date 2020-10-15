@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**
@@ -22,8 +24,10 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('home');
+    {   
+        $orders = DB::table('orders')->where('user_id',Auth::id())->get();
+
+        return view('home',compact('orders'));
     }
 
     public function changePassword(){
@@ -76,4 +80,23 @@ class HomeController extends Controller
        
 
     }
+
+    public function OrderTracking(Request $request)
+    {
+         $code=$request->code;
+
+
+         $track=DB::table('orders')->where('status_code',$code)->first();
+         if ($track) {             
+             return view('pages.track',compact('track'));
+         }else{
+               $notification=array(
+                'messege'=>'Status code invalid ',
+                'alert-type'=>'error'
+                       );
+             return Redirect()->back()->with($notification);
+         }
+
+    }
+
 }

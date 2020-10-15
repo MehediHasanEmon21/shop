@@ -54,9 +54,9 @@
                                             @elseif($order->status == 1)
                                                 <span class="badge badge-success">Payment Accept</span>
                                             @elseif($order->status == 2)
-                                                <span class="badge badge-success">Progress</span>
+                                                <span class="badge badge-info">Progress</span>
                                             @elseif($order->status == 3)
-                                                <span class="badge badge-success">Delivered</span>
+                                                <span class="badge badge-warning">Delivered</span>
                                             @else
                                                 <span class="badge badge-success">Cancel</span>
                                             @endif
@@ -164,8 +164,21 @@
                             </table>
                         </div><!-- table-wrapper -->
                     </div><!-- card -->
+                    @if($order->status == 0)
                     <a href="{{ route('order.confirm', $order->id) }}" class="btn btn-success btn-block">Accept Order</a>
                     <a href="{{ route('order.cancel', $order->id) }}" class="btn btn-primary btn-block">Cancel Order</a>
+                    @elseif($order->status == 1)
+                    <a href="{{ route('order.progress.delivery', $order->id) }}" class="btn btn-success btn-block">Progress Delivery</a>
+                     @elseif($order->status == 2)
+                     <a href="{{ route('order.delivered', $order->id) }}" class="btn btn-success btn-block">Delivered Order</a>
+                    @elseif($order->status == 3)
+                        <a href="javascript:void();" class="btn btn-info btn-block">Order Delivered</a>
+                    @else
+                        <a href="javascript:void();" class="btn btn-info btn-block">Order Canceled</a>
+                    @endif
+
+
+
                 </div>
 
             </div>

@@ -109,7 +109,19 @@
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
-            <span class="menu-item-label">Extra</span>
+            <span class="menu-item-label">Others</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="{{ route('admin.coupons') }}" class="nav-link">Coupon</a></li>
+          <li class="nav-item"><a href="{{ route('admin.newsletter') }}" class="nav-link">Subcriber</a></li>
+        </ul>
+
+        <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+            <span class="menu-item-label">Coupon</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
@@ -139,9 +151,97 @@
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('pending.order') }}" class="nav-link">Pending Order</a></li>
+          <li class="nav-item"><a href="{{ route('pending.order') }}" class="nav-link">New Pending Order</a></li>
+          <li class="nav-item"><a href="{{ route('pending.accept') }}" class="nav-link">Payment Accept</a></li>
+          <li class="nav-item"><a href="{{ route('pending.progress') }}" class="nav-link">Progress Delivery</a></li>
+          <li class="nav-item"><a href="{{ route('pending.delivered') }}" class="nav-link">Delivered order</a></li>
+          <li class="nav-item"><a href="{{ route('pending.cancel') }}" class="nav-link">Cancel</a></li>
           
         </ul>
+
+        <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-paper-outline tx-22"></i>
+            <span class="menu-item-label">Reports</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">Today Order</a></li>
+          <li class="nav-item"><a href="{{ route('today.delevered') }}" class="nav-link">Today Delevered</a></li>
+          <li class="nav-item"><a href="{{ route('this.month') }}" class="nav-link">This Month</a></li>
+          <li class="nav-item"><a href="{{ route('search.report') }}" class="nav-link">Search Report</a></li>
+        </ul>
+
+        <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-paper-outline tx-22"></i>
+            <span class="menu-item-label">User Role</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="{{ route('create.admin') }}" class="nav-link">Create User</a></li>
+          <li class="nav-item"><a href="{{ route('create.user.role') }}" class="nav-link">All User</a></li>
+        </ul>
+
+
+        <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-paper-outline tx-22"></i>
+            <span class="menu-item-label">Return Order</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">Today Order</a></li>
+          <li class="nav-item"><a href="{{ route('today.delevered') }}" class="nav-link">Today Delevered</a></li>
+          <li class="nav-item"><a href="{{ route('this.month') }}" class="nav-link">This Month</a></li>
+          <li class="nav-item"><a href="{{ route('search.report') }}" class="nav-link">Search Report</a></li>
+        </ul>
+
+        <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-paper-outline tx-22"></i>
+            <span class="menu-item-label">Contact Message</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">Today Order</a></li>
+          <li class="nav-item"><a href="{{ route('today.delevered') }}" class="nav-link">Today Delevered</a></li>
+          <li class="nav-item"><a href="{{ route('this.month') }}" class="nav-link">This Month</a></li>
+          <li class="nav-item"><a href="{{ route('search.report') }}" class="nav-link">Search Report</a></li>
+        </ul>
+
+         <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-paper-outline tx-22"></i>
+            <span class="menu-item-label">Product Comment</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">Today Order</a></li>
+          <li class="nav-item"><a href="{{ route('today.delevered') }}" class="nav-link">Today Delevered</a></li>
+          <li class="nav-item"><a href="{{ route('this.month') }}" class="nav-link">This Month</a></li>
+          <li class="nav-item"><a href="{{ route('search.report') }}" class="nav-link">Search Report</a></li>
+        </ul>
+
+        <a href="#" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-paper-outline tx-22"></i>
+            <span class="menu-item-label">Site Setting</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">Today Order</a></li>
+          <li class="nav-item"><a href="{{ route('today.delevered') }}" class="nav-link">Today Delevered</a></li>
+          <li class="nav-item"><a href="{{ route('this.month') }}" class="nav-link">This Month</a></li>
+          <li class="nav-item"><a href="{{ route('search.report') }}" class="nav-link">Search Report</a></li>
+        </ul>
+
 
 
 

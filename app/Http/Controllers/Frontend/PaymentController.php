@@ -85,7 +85,7 @@ class PaymentController extends Controller
     	    $data['date']=date('d-m-y');
     	    $data['month']=date('F');
     	    $data['year']=date('Y');
- 
+            $data['status_code']=mt_rand(100000,999999); 
     	    $order_id=DB::table('orders')->insertGetId($data);
 
     	    	$shipping=array();

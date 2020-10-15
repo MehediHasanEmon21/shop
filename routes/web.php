@@ -77,8 +77,17 @@ Route::post('update/post/{id}', 'Admin\PostController@update');
 
 ////oreder routes
 Route::get('admin/pending/order', 'Admin\OrderController@pending')->name('pending.order');
+Route::get('admin/accept/order', 'Admin\OrderController@accept')->name('pending.accept');
+Route::get('admin/progress/order', 'Admin\OrderController@progress')->name('pending.progress');
+Route::get('admin/delivered/order', 'Admin\OrderController@delivered')->name('pending.delivered');
+Route::get('admin/cancel/order', 'Admin\OrderController@cancel')->name('pending.cancel');
+
+
+
 Route::get('admin/order/detail/{id}', 'Admin\OrderController@detail')->name('order.detail');
 Route::get('admin/order/confirm/{id}', 'Admin\OrderController@confirmOrder')->name('order.confirm');
+Route::get('admin/order/progress/{id}', 'Admin\OrderController@orderProgress')->name('order.progress.delivery');
+Route::get('admin/order/delivered/{id}', 'Admin\OrderController@orderDeliveredrder')->name('order.delivered');
 Route::get('admin/order/cancel/{id}', 'Admin\OrderController@cancelOrder')->name('order.cancel');
 
 
@@ -150,3 +159,26 @@ Route::post('stripe/charge', 'Frontend\PaymentController@stripeCharge')->name('s
 //language routes
 Route::get('/language/bangla', 'Frontend\LanguageController@bangla')->name('language.bangla');
 Route::get('/language/english', 'Frontend\LanguageController@english')->name('language.english');
+
+//order track
+ Route::post('order/tracking', 'HomeController@OrderTracking')->name('order.tracking');
+
+
+ //orders routes
+Route::get('admin/today/order', 'Admin\ReportController@TodayOrder')->name('today.order');
+Route::get('admin/today/deleverd', 'Admin\ReportController@TodayDelevered')->name('today.delevered');
+Route::get('admin/this/month', 'Admin\ReportController@ThisMonth')->name('this.month');
+Route::get('admin/search/report', 'Admin\ReportController@search')->name('search.report');
+Route::post('admin/search/byyear', 'Admin\ReportController@searchByYear')->name('search.by.year');
+Route::post('admin/search/bymonth', 'Admin\ReportController@searchByMonth')->name('search.by.month');
+Route::post('admin/search/bydate', 'Admin\ReportController@searchByDate')->name('search.by.date');
+
+//user role
+Route::get('admin/create/role', 'Admin\ReportController@UserRole')->name('create.user.role');
+Route::get('admin/create/admin', 'Admin\ReportController@UserCreate')->name('create.admin');
+Route::post('admin/store/admin', 'Admin\ReportController@UserStore')->name('store.admin');
+Route::get('delete/admin/{id}', 'Admin\ReportController@UserDelete');
+Route::get('edit/admin/{id}', 'Admin\ReportController@UserEdit');
+Route::post('admin/update/admin', 'Admin\ReportController@UserUpdate')->name('update.admin');
+
+

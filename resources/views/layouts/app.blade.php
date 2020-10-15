@@ -77,6 +77,17 @@ $route = Route::current()->getName();
                         <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/frontend/images/phone.png" alt=""></div>+38 068 005 3570</div>
                         <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/frontend/images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
                         <div class="top_bar_content ml-auto">
+                             <div class="top_bar_menu">
+                                <ul class="standard_dropdown ">
+                                  
+                                    <li>
+                                       <a href="#" data-toggle="modal" data-target="#exampleModal">My Order Traking</a>
+                                        
+                                    </li>
+                             
+                                </ul>
+                            </div>&nbsp;&nbsp;&nbsp;
+
                             <div class="top_bar_menu">
                                 @php
 
@@ -546,6 +557,32 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </div>
 </div>
+
+
+  <!-- Order Tracking Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Your Status Code</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                 <form method="post" action="{{ route('order.tracking') }}">
+                     @csrf
+                     <div class="form-row">
+                          <label>Status Code</label>
+                           <input type="text" name="code" required="" class="form-control" placeholder="Your Order Status Code">
+                     </div><br>
+                     <button class="btn btn-danger" type="submit">Track Now</button>                 
+                 </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
 
 <script src="{{asset('frontend/plugins/greensock/TweenMax.min.js')}}"></script>
