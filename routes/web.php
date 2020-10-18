@@ -90,6 +90,37 @@ Route::get('admin/order/progress/{id}', 'Admin\OrderController@orderProgress')->
 Route::get('admin/order/delivered/{id}', 'Admin\OrderController@orderDeliveredrder')->name('order.delivered');
 Route::get('admin/order/cancel/{id}', 'Admin\OrderController@cancelOrder')->name('order.cancel');
 
+//seo setting
+Route::get('admin/seo', 'Admin\CouponController@Seo')->name('admin.seo');
+Route::post('admin/update/seo', 'Admin\CouponController@UpdateSeo')->name('update.seo');
+
+//return products admin panel
+ Route::get('admin/return/request', 'Admin\ReturnController@request')->name('admin.return.request');
+ Route::get('/admin/approve/return/{id}', 'Admin\ReturnController@ApproveReturn');
+ Route::get('admin/all/return', 'Admin\ReturnController@AllReturn')->name('admin.all.return');
+
+
+  //orders routes
+Route::get('admin/today/order', 'Admin\ReportController@TodayOrder')->name('today.order');
+Route::get('admin/today/deleverd', 'Admin\ReportController@TodayDelevered')->name('today.delevered');
+Route::get('admin/this/month', 'Admin\ReportController@ThisMonth')->name('this.month');
+Route::get('admin/search/report', 'Admin\ReportController@search')->name('search.report');
+Route::post('admin/search/byyear', 'Admin\ReportController@searchByYear')->name('search.by.year');
+Route::post('admin/search/bymonth', 'Admin\ReportController@searchByMonth')->name('search.by.month');
+Route::post('admin/search/bydate', 'Admin\ReportController@searchByDate')->name('search.by.date');
+
+//user role
+Route::get('admin/create/role', 'Admin\ReportController@UserRole')->name('create.user.role');
+Route::get('admin/create/admin', 'Admin\ReportController@UserCreate')->name('create.admin');
+Route::post('admin/store/admin', 'Admin\ReportController@UserStore')->name('store.admin');
+Route::get('delete/admin/{id}', 'Admin\ReportController@UserDelete');
+Route::get('edit/admin/{id}', 'Admin\ReportController@UserEdit');
+Route::post('admin/update/admin', 'Admin\ReportController@UserUpdate')->name('update.admin');
+
+//site setting
+Route::get('admin/site/setting', 'Admin\SettingController@SiteSetting')->name('admin.site.setting');
+Route::post('admin/update/sitesetting', 'Admin\SettingController@UpdateSetting')->name('update.sitesetting');
+
 
 
 
@@ -164,21 +195,15 @@ Route::get('/language/english', 'Frontend\LanguageController@english')->name('la
  Route::post('order/tracking', 'HomeController@OrderTracking')->name('order.tracking');
 
 
- //orders routes
-Route::get('admin/today/order', 'Admin\ReportController@TodayOrder')->name('today.order');
-Route::get('admin/today/deleverd', 'Admin\ReportController@TodayDelevered')->name('today.delevered');
-Route::get('admin/this/month', 'Admin\ReportController@ThisMonth')->name('this.month');
-Route::get('admin/search/report', 'Admin\ReportController@search')->name('search.report');
-Route::post('admin/search/byyear', 'Admin\ReportController@searchByYear')->name('search.by.year');
-Route::post('admin/search/bymonth', 'Admin\ReportController@searchByMonth')->name('search.by.month');
-Route::post('admin/search/bydate', 'Admin\ReportController@searchByDate')->name('search.by.date');
 
-//user role
-Route::get('admin/create/role', 'Admin\ReportController@UserRole')->name('create.user.role');
-Route::get('admin/create/admin', 'Admin\ReportController@UserCreate')->name('create.admin');
-Route::post('admin/store/admin', 'Admin\ReportController@UserStore')->name('store.admin');
-Route::get('delete/admin/{id}', 'Admin\ReportController@UserDelete');
-Route::get('edit/admin/{id}', 'Admin\ReportController@UserEdit');
-Route::post('admin/update/admin', 'Admin\ReportController@UserUpdate')->name('update.admin');
+
+//wishlists
+Route::get('user/wishlist/','WishlistController@Wishlist')->name('user.wishlist');
+
+//return 
+Route::get('success/list/','Frontend\PaymentController@SuccessList')->name('success.orderlist');
+Route::get('request/return/{id}','Frontend\PaymentController@RequestReturn');
+
+
 
 

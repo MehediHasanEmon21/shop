@@ -106,17 +106,22 @@
           <li class="nav-item"><a href="{{ route('admin.product.create') }}" class="nav-link">Add Product</a></li>
         </ul>
 
+        @if(Auth::user()->other == 1)
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
-            <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
+            <i class="menu-item-icon icon ion-ios-paper-outline tx-22"></i>
             <span class="menu-item-label">Others</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('admin.coupons') }}" class="nav-link">Coupon</a></li>
           <li class="nav-item"><a href="{{ route('admin.newsletter') }}" class="nav-link">Subcriber</a></li>
+          <li class="nav-item"><a href="{{ route('admin.seo') }}" class="nav-link">Seo Settings</a></li>
         </ul>
+        @else
+        @endif
+
+      
 
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
@@ -127,7 +132,7 @@
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
           <li class="nav-item"><a href="{{ route('admin.coupons') }}" class="nav-link">Coupon</a></li>
-          <li class="nav-item"><a href="{{ route('admin.newsletter') }}" class="nav-link">Subcriber</a></li>
+          
         </ul>
 
         <a href="#" class="sl-menu-link">
@@ -186,7 +191,8 @@
         </ul>
 
 
-        <a href="#" class="sl-menu-link">
+         @if(Auth::user()->return == 1)
+          <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-paper-outline tx-22"></i>
             <span class="menu-item-label">Return Order</span>
@@ -194,11 +200,11 @@
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">Today Order</a></li>
-          <li class="nav-item"><a href="{{ route('today.delevered') }}" class="nav-link">Today Delevered</a></li>
-          <li class="nav-item"><a href="{{ route('this.month') }}" class="nav-link">This Month</a></li>
-          <li class="nav-item"><a href="{{ route('search.report') }}" class="nav-link">Search Report</a></li>
+              <li class="nav-item"><a href="{{ route('admin.return.request') }}" class="nav-link">Return Request</a></li>
+               <li class="nav-item"><a href="{{ route('admin.all.return') }}" class="nav-link">All Return</a></li>
         </ul>
+        @else
+        @endif
 
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
@@ -228,19 +234,21 @@
           <li class="nav-item"><a href="{{ route('search.report') }}" class="nav-link">Search Report</a></li>
         </ul>
 
-        <a href="#" class="sl-menu-link">
+        @if(Auth::user()->setting == 1)
+          <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-paper-outline tx-22"></i>
-            <span class="menu-item-label">Site Setting</span>
+            <span class="menu-item-label">Site Settings</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">Today Order</a></li>
-          <li class="nav-item"><a href="{{ route('today.delevered') }}" class="nav-link">Today Delevered</a></li>
-          <li class="nav-item"><a href="{{ route('this.month') }}" class="nav-link">This Month</a></li>
-          <li class="nav-item"><a href="{{ route('search.report') }}" class="nav-link">Search Report</a></li>
+              <li class="nav-item"><a href="{{ route('admin.site.setting') }}" class="nav-link">Site Setting</a></li>
+
+              <li class="nav-item"><a href="" class="nav-link">Databse Backup </a></li>
         </ul>
+        @else
+        @endif
 
 
 

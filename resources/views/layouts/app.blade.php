@@ -1,3 +1,8 @@
+
+@php
+    $setting=DB::table('sitesetting')->first();
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,8 +79,8 @@ $route = Route::current()->getName();
             <div class="container">
                 <div class="row">
                     <div class="col d-flex flex-row">
-                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/frontend/images/phone.png" alt=""></div>+38 068 005 3570</div>
-                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/frontend/images/mail.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/frontend/images/phone.png" alt=""></div>{{ $setting->phone_one }}</div>
+                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="/frontend/images/mail.png" alt=""></div><a href="mailto:{{ $setting->email }}">{{ $setting->email }}</a></div>
                         <div class="top_bar_content ml-auto">
                              <div class="top_bar_menu">
                                 <ul class="standard_dropdown ">
@@ -159,7 +164,7 @@ $route = Route::current()->getName();
                             @if(session()->get('language') == 'bangla')
                              অনটেক
                             @else
-                             OneTech
+                             {{ $setting->company_name }}
                             @endif
 
                         </a></div>
@@ -211,7 +216,7 @@ $route = Route::current()->getName();
                             <div class="wishlist d-flex flex-row align-items-center justify-content-end">
                                 <div class="wishlist_icon"><img src="/frontend/images/heart.png" alt=""></div>
                                 <div class="wishlist_content">
-                                    <div class="wishlist_text"><a href="#">Wishlist</a></div>
+                                    <div class="wishlist_text"><a href="{{ route('user.wishlist') }}">Wishlist</a></div>
                                     <div class="wishlist_count" id="wishlist_count">{{ $wishlist_count }}</div>
                                 </div>
                             </div>
@@ -463,12 +468,12 @@ $route = Route::current()->getName();
                 <div class="col-lg-3 footer_col">
                     <div class="footer_column footer_contact">
                         <div class="logo_container">
-                            <div class="logo"><a href="#">OneTech</a></div>
+                            <div class="logo"><a href="#">{{ $setting->company_name }}</a></div>
                         </div>
                         <div class="footer_title">Got Question? Call Us 24/7</div>
-                        <div class="footer_phone">+38 068 005 3570</div>
+                        <div class="footer_phone">{{ $setting->phone_two}}</div>
                         <div class="footer_contact_text">
-                            <p>17 Princess Road, London</p>
+                            <p>{{ $setting->company_address }}</p>
                             <p>Grester London NW18JR, UK</p>
                         </div>
                         <div class="footer_social">
@@ -643,6 +648,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                   }
                 });
             });
+    </script>
+
+      <script>
+        $(document).on("click", "#return", function(e) {
+            e.preventDefault();
+            var link = $(this).attr("href");
+            swal({
+                    title: "Are you Want to Return?",
+                    text: "Once Return,You will return your money!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = link;
+                    } else {
+                        swal("Cancel");
+                    }
+                });
+        });
+
     </script>
 
 </body>
