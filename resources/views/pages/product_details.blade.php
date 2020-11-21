@@ -138,5 +138,7 @@
 		</div>
 	</div>
 <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0" nonce="X2vxZ4x7"></script>
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f8cf7db25ffd0001210cfba&product=sop' async='async'></script>
 
 @endsection

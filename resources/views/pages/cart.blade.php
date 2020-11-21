@@ -79,8 +79,40 @@
 
 						<div class="cart_buttons">
 							<button type="button" class="button cart_button_clear">Add to Cart</button>
+						
 							<a href="{{ route('user.checkout') }}" class="button cart_button_checkout">Checkout</a>
+
 						</div>
+						<form action='https://2checkout.com/checkout/purchase' method='post'>
+						<input type='hidden' name='sid' value='250604128234' />
+						<input type='hidden' name='mode' value='2CO' />
+
+						@php
+
+							$content = Cart::content();
+
+						@endphp
+
+						@foreach($content as $row)
+						<input type='hidden' name='li_{{ $row->id }}_type' value='product' />
+						<input type='hidden' name='li_{{ $row->id }}_name' value='{{ $row->name }}' />
+						<input type='hidden' name='li_{{ $row->id }}_price' value='{{ $row->price }}' />
+						<input type='hidden' name='li_{{ $row->id }}_price' value='{{ $row->price }}' />
+						@endforeach
+
+
+						<input type='hidden' name='card_holder_name' value='Checkout Shopper' />
+						<input type='hidden' name='street_address' value='123 Test Address' />
+						<input type='hidden' name='street_address2' value='Suite 200' />
+						<input type='hidden' name='city' value='Columbus' />
+						<input type='hidden' name='state' value='OH' />
+						<input type='hidden' name='zip' value='43228' />
+						<input type='hidden' name='country' value='USA' />
+						<input type='hidden' name='email' value='example@2co.com' />
+						<input type='hidden' name='phone' value='614-921-2450' />
+						<input type='hidden' name='demo' value='Y' />
+						<input name='submit' type='submit' class="btn btn-success" value='Checkout' />
+						</form>
 					</div>
 				</div>
 			</div>

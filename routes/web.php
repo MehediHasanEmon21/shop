@@ -121,6 +121,10 @@ Route::post('admin/update/admin', 'Admin\ReportController@UserUpdate')->name('up
 Route::get('admin/site/setting', 'Admin\SettingController@SiteSetting')->name('admin.site.setting');
 Route::post('admin/update/sitesetting', 'Admin\SettingController@UpdateSetting')->name('update.sitesetting');
 
+//stock
+Route::get('admin/product/stock', 'Admin\ReturnController@Stock')->name('admin.product.stock');
+
+
 
 
 
@@ -187,6 +191,11 @@ Route::get('payment', 'Frontend\PaymentController@index')->name('payment.page');
 Route::post('payment/process', 'Frontend\PaymentController@payment')->name('payment.process');
 Route::post('stripe/charge', 'Frontend\PaymentController@stripeCharge')->name('strip.charge');
 
+//2 checkout
+Route::get('/callback', 'Frontend\PaymentController@callBack');
+
+
+
 //language routes
 Route::get('/language/bangla', 'Frontend\LanguageController@bangla')->name('language.bangla');
 Route::get('/language/english', 'Frontend\LanguageController@english')->name('language.english');
@@ -203,6 +212,9 @@ Route::get('user/wishlist/','WishlistController@Wishlist')->name('user.wishlist'
 //return 
 Route::get('success/list/','Frontend\PaymentController@SuccessList')->name('success.orderlist');
 Route::get('request/return/{id}','Frontend\PaymentController@RequestReturn');
+
+//search 
+Route::post('product/search', 'FrontController@ProductSearch')->name('product.search');
 
 
 

@@ -143,4 +143,10 @@ class PaymentController extends Controller
                          );
                  return Redirect()->back()->with($notification);
     }
+
+    public function callBack(Request $request){
+
+        dd('ok');
+
+    }
 }
