@@ -14,7 +14,7 @@
                         @endif
                         
                         <div class="banner_product_name">Apple</div>
-                        <div class="button banner_button"><a href="#">Shop Now</a></div>
+                        <div class="button banner_button"><a href="{{ route('product.details',$product->slug) }}">Shop Now</a></div>
                     </div>
                 </div>
             </div>

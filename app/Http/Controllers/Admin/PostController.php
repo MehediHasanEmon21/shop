@@ -32,8 +32,8 @@ class PostController extends Controller
     	$post_image=$request->file('post_image');
     	if ($post_image) {
     		    $image_one_name= hexdec(uniqid()).'.'.$post_image->getClientOriginalExtension();
-                Image::make($post_image)->resize(400,240)->save('public/backend/images/post/'.$image_one_name);
-                $data['post_image']='public/backend/images/post/'.$image_one_name;
+                Image::make($post_image)->resize(400,240)->save('backend/images/post/'.$image_one_name);
+                $data['post_image']='backend/images/post/'.$image_one_name;
                 DB::table('posts')->insert($data);
                 $notification=array(
                      'messege'=>'Successfully Post Inserted ',
@@ -91,8 +91,8 @@ class PostController extends Controller
     	 if ($post_image) {
     		    unlink($oldimage);
     		    $image_one_name= hexdec(uniqid()).'.'.$post_image->getClientOriginalExtension();
-                Image::make($post_image)->resize(400,240)->save('public/backend/images/post/'.$image_one_name);
-                $data['post_image']='public/backend/images/post/'.$image_one_name;
+                Image::make($post_image)->resize(400,240)->save('backend/images/post/'.$image_one_name);
+                $data['post_image']='backend/images/post/'.$image_one_name;
                 DB::table('posts')->where('id',$id)->update($data);
                 $notification=array(
                      'messege'=>'Successfully Post Update ',

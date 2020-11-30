@@ -55,13 +55,29 @@ class HomeController extends Controller
                         ->orderBy('id','DESC')
                         ->limit(4)
                         ->get();
+        foreach ($buyone_getone as $key => $bgo) {
+            $is_favaurite = DB::table('wishlists')->where('product_id',$bp->id)->where('user_id',Auth::id())->first();
+            $bgo->favourite = $is_favaurite;
+         }
         $categories = DB::table('categories')->orderBy('category_name','ASC')->limit(3)->get();
+
+        $best_product = DB::table('products')->orderBy('id','DESC')->where('status',1)->where('best_rated',1)->first();
 
         foreach ($categories as $key => $category) {
             $CategoryProducts = DB::table('products')->where('category_id',$category->id)->get();
             $category->products = $CategoryProducts;
+            foreach ($category->products as $pro) {
+                $pro->percent = $this->calculationPercentage($pro);
+                $is_favaurite = DB::table('wishlists')->where('product_id',$pro->id)->where('user_id',Auth::id())->first();
+                $pro->favourite = $is_favaurite;
+         
+            }
         }
 
+        
+
+       
+         
         
 
         $brands = DB::table('brands')->select('brand_logo')->get();
@@ -69,7 +85,7 @@ class HomeController extends Controller
 
         // return $categories;
     	 
-    	return view('pages.index',compact('feature_products','trend_products','best_products','hot_deals','mid_sliders','categories','brands','buyone_getone'));
+    	return view('pages.index',compact('feature_products','trend_products','best_products','hot_deals','mid_sliders','categories','brands','buyone_getone','best_product'));
 
     }
 

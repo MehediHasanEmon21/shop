@@ -46,9 +46,20 @@ class WishlistController extends Controller
     {
         $userid=Auth::id();
         $product=DB::table('wishlists')->join('products','wishlists.product_id','products.id')
-                          ->select('products.*','wishlists.user_id')
+                          ->select('products.*','wishlists.user_id','wishlists.id')
                           ->where('wishlists.user_id',$userid)
                           ->get();
            return view('pages.wishlist',compact('product'));             
+    }
+
+    public function delete($id){
+
+      DB::table('wishlists')->where('id',$id)->delete();
+      $notification=array(
+            'messege'=>'Successfully Delete Wishlist Product',
+           'alert-type'=>'success'
+       );
+     return Redirect()->back()->with($notification);
+
     }
 }

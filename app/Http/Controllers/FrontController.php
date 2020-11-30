@@ -21,4 +21,27 @@ class FrontController extends Controller
        return view('pages.search',compact('brands','products'));       
     }
 
+    public function CategoryProductByAjax(Request $request){
+
+      $products = DB::table('products')->where('category_id',$request->id)->orderBy('id','DESC')->get();
+
+
+      return view('pages.ajax.category_products',compact('products'));
+
+    }
+
+    public function SubCategoryProductByAjax(Request $request){
+
+      $products = DB::table('products')->where('brand_id',$request->id)->orderBy('id','DESC')->get();
+
+
+      return view('pages.ajax.category_products',compact('products'));
+
+    }
+
+    public function PriceFilterByAjax(Request $request){
+      $products = DB::table('products')->whereBetween('selling_price',[$request->minimum_price,$request->maximum_price])->orderBy('id','DESC')->get();
+      return view('pages.ajax.category_products',compact('products'));
+    }
+
 }

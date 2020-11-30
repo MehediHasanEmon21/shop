@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/cart_styles.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/cart_responsive.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/cart_styles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/cart_responsive.css') }}">
 
 	<!-- Cart -->
 
@@ -43,7 +43,8 @@
 
 										<div class="cart_item_total cart_info_col">
 											<div class="cart_item_title">Action</div><br><br>
-											<a href="#" class="btn btn-sm btn-danger">Add To Cart</a>
+											<a href="{{ route('product.details',$row->slug) }}" class="btn btn-sm btn-success">Add To Cart</a>
+											<a href="{{ route('wishlist.delete',$row->id) }}" class="btn btn-sm btn-danger">Delete</a>
 										</div>
 									</div>
 								</li>
@@ -56,5 +57,5 @@
 			</div>
 		</div>
 	</div>
-<script src="{{ asset('public/frontend/js/cart_custom.js') }}"></script>
+<script src="{{ asset('frontend/js/cart_custom.js') }}"></script>
 @endsection

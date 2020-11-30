@@ -177,6 +177,12 @@ Route::post('/cart/product/add/{id}', 'Frontend\ProductController@AddCart');
 Route::get('/category/{slug}', 'Frontend\ProductController@categoryProduct');
 Route::get('/subcategory/{slug}', 'Frontend\ProductController@subCategoryProduct');
 
+//pages
+Route::get('/shop', 'Frontend\ProductController@all_products')->name('all.products');
+Route::get('/blog', 'Frontend\ProductController@all_blog')->name('all.blogs');
+Route::get('/contact', 'Frontend\ProductController@contact')->name('contact.page');
+
+
 //cart routes
 Route::get('/show-cart', 'Frontend\CartController@show_cart')->name('show.cart');
 Route::post('insert/into/cart/', 'Frontend\CartController@InsertCart')->name('insert.into.cart');
@@ -208,6 +214,7 @@ Route::get('/language/english', 'Frontend\LanguageController@english')->name('la
 
 //wishlists
 Route::get('user/wishlist/','WishlistController@Wishlist')->name('user.wishlist');
+Route::get('user/wishlist/delete/{id}','WishlistController@delete')->name('wishlist.delete');
 
 //return 
 Route::get('success/list/','Frontend\PaymentController@SuccessList')->name('success.orderlist');
@@ -216,6 +223,11 @@ Route::get('request/return/{id}','Frontend\PaymentController@RequestReturn');
 //search 
 Route::post('product/search', 'FrontController@ProductSearch')->name('product.search');
 
+
+//ajax request
+Route::get('/fetch/category/product','FrontController@CategoryProductByAjax');
+Route::get('/fetch/subcategory/product','FrontController@SubCategoryProductByAjax');
+Route::get('/price/filter/product','FrontController@PriceFilterByAjax');
 
 
 

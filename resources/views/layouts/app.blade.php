@@ -21,18 +21,18 @@
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/main_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/responsive.css')}}">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-
-<link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/product_styles.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/product_responsive.css') }}">
-
-<script src="https://js.stripe.com/v3/"></script>
 
 
 <script src="{{asset('frontend/js/jquery-3.3.1.min.js')}}"></script>
 <script src="{{asset('frontend/styles/bootstrap4/popper.js')}}"></script>
 <script src="{{asset('frontend/styles/bootstrap4/bootstrap.min.js')}}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+
+
+
 
 @php
 
@@ -108,14 +108,7 @@ $route = Route::current()->getName();
                                         @endif
                                         
                                     </li>
-                                    <li>
-                                        <a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="#">EUR Euro</a></li>
-                                            <li><a href="#">GBP British Pound</a></li>
-                                            <li><a href="#">JPY Japanese Yen</a></li>
-                                        </ul>
-                                    </li>
+                                    
                                 </ul>
                             </div>
                             <div class="top_bar_user">
@@ -184,12 +177,15 @@ $route = Route::current()->getName();
                                                 <span class="custom_dropdown_placeholder clc">All Categories</span>
                                                 <i class="fas fa-chevron-down"></i>
                                                 <ul class="custom_list clc">
-                                                    <li><a class="clc" href="#">All Categories</a></li>
-                                                    <li><a class="clc" href="#">Computers</a></li>
-                                                    <li><a class="clc" href="#">Laptops</a></li>
-                                                    <li><a class="clc" href="#">Cameras</a></li>
-                                                    <li><a class="clc" href="#">Hardware</a></li>
-                                                    <li><a class="clc" href="#">Smartphones</a></li>
+                                                    @php
+
+                                                    $categories = DB::table('categories')->get();
+
+                                                    @endphp
+                                                    @foreach($categories as $category)
+                                                    <li><a  href="{{url('category/'.$category->slug)}}">{{$category->category_name}}</a></li>
+                                                    @endforeach
+                                                    
                                                 </ul>
                                             </div>
                                         </div>
@@ -273,53 +269,10 @@ $route = Route::current()->getName();
 
                             <div class="main_nav_menu ml-auto">
                                 <ul class="standard_dropdown main_nav_dropdown">
-                                    <li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
-                                    <li class="hassubs">
-                                        <a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="hassubs">
-                                        <a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="hassubs">
-                                        <a href="#">Pages<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="{{ url('/') }}">Home<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="{{ route('all.products') }}">Shop<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="{{ route('all.blogs') }}">Blog<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="{{route('contact.page')}}">Contact<i class="fas fa-chevron-down"></i></a></li>
                                 </ul>
                             </div>
 
@@ -591,6 +544,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 
+
+
 <script src="{{asset('frontend/plugins/greensock/TweenMax.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/greensock/TimelineMax.min.js')}}"></script>
 <script src="{{asset('frontend/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
@@ -605,6 +560,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="{{asset('frontend/js/custom.js')}}"></script>
 <script src="{{ asset('frontend/js/product_custom.js') }}"></script>
 <script src="{{asset('frontend/js/script.js')}}"></script>
+<script src="{{asset('frontend/plugins/Isotope/isotope.pkgd.min.js')}}"></script>
+<script src="{{asset('frontend/plugins/jquery-ui-1.12.1.custom/jquery-ui.js')}}"></script>
+<script src="{{asset('frontend/plugins/parallax-js-master/parallax.min.js')}}"></script>
+<script src="{{asset('frontend/js/shop_custom.js')}}"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 

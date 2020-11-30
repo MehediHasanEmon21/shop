@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('left_sidebar')
-@include('layouts.include.left_sidebar')
-@endsection
+
 
 @section('content')
-<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/contact_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/contact_styles.css')}}">
+
+
     <div class="contact_form">
         <div class="container">
             <div class="row">
@@ -39,7 +39,7 @@
                         </form><br>
                         <a href="{{ route('password.request') }}">I Forgot My Password.</a>
                         <br><br>
-                        <button type="submit" class="btn btn-primary btn-block">Login With Facebook</button>
+                        
                         <a href="{{ url('/auth/redirect/google') }}" class="btn btn-danger btn-block">Login With Google</a>
                     </div>
                 </div>

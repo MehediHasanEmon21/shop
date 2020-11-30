@@ -1,5 +1,13 @@
 @extends('layouts.app')
+
 @section('content')
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/product_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/product_responsive.css')}}">
+
+@section('left_sidebar')
+@include('layouts.include.left_sidebar')
+@endsection
+
 	<div class="single_product">
 		<div class="container">
 			<div class="row">
@@ -109,7 +117,7 @@
 					<div class="">						
 							<ul class="nav nav-tabs" id="myTab" role="tablist">
 							  <li class="nav-item">
-							    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Product Details</a>
+							    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Product Details F</a>
 							  </li>
 							  <li class="nav-item">
 							    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Video or Link</a>
@@ -140,5 +148,5 @@
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0" nonce="X2vxZ4x7"></script>
 <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5f8cf7db25ffd0001210cfba&product=sop' async='async'></script>
-
+<script src="{{asset('frontend/js/product_custom.js')}}"></script>
 @endsection

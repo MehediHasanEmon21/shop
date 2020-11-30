@@ -46,7 +46,7 @@ class ProductController extends Controller
                          );
                        return Redirect()->to('/')->with($notification);
            }else{
-                         $data['id']=$id;
+                        $data['id']=$id;
                         $data['name']=$product->product_name;
                         $data['qty']=$request->qty;
                         $data['price']= $product->discount_price;          
@@ -90,8 +90,10 @@ class ProductController extends Controller
       $category_id = $category->id;
 
       $products = DB::table('products')->where('category_id',$category_id)->paginate(15);
+      $categories = DB::table('categories')->orderBy('category_name','ASC')->get();
+      $brands = DB::table('brands')->orderBy('brand_name','ASC')->get();
 
-      return view('pages.products',compact('products'));
+      return view('pages.products',compact('products','categories','brands'));
 
     }
 
@@ -100,9 +102,38 @@ class ProductController extends Controller
       $subcategory = DB::table('sub_categories')->where('slug',$slug)->first();
       $subcategory_id = $subcategory->id;
 
+      $categories = DB::table('categories')->orderBy('category_name','ASC')->get();
+      $brands = DB::table('brands')->orderBy('brand_name','ASC')->get();
       $products = DB::table('products')->where('subcategory_id',$subcategory_id)->paginate(15);
 
-      return view('pages.products',compact('products'));
+      return view('pages.products',compact('products','categories','brands'));
+
+    }
+
+    public function all_products(){
+
+        $categories = DB::table('categories')->orderBy('category_name','ASC')->get();
+        $brands = DB::table('brands')->orderBy('brand_name','ASC')->get();
+        $products = DB::table('products')->orderBy('id','DESC')->paginate(15);
+
+        $min_price = DB::table('products')->min('selling_price');
+        $max_price = DB::table('products')->max('selling_price');
+
+        return view('pages.products',compact('products','categories','brands','max_price','min_price'));
+
+
+    }
+
+    public function all_blog(){
+
+        $post=DB::table('posts')->join('post_category','posts.category_id','post_category.id')->select('posts.*','post_category.category_name_en','post_category.category_name_bn')->get();
+        return view('pages.blog',compact('post'));
+
+    }
+
+    public function contact(){
+
+        return view('pages.contact');
 
     }
 
