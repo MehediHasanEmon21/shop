@@ -93,7 +93,10 @@ class ProductController extends Controller
       $categories = DB::table('categories')->orderBy('category_name','ASC')->get();
       $brands = DB::table('brands')->orderBy('brand_name','ASC')->get();
 
-      return view('pages.products',compact('products','categories','brands'));
+       $min_price = DB::table('products')->min('selling_price');
+       $max_price = DB::table('products')->max('selling_price');
+
+      return view('pages.products',compact('products','categories','brands','max_price','min_price'));
 
     }
 
@@ -106,7 +109,10 @@ class ProductController extends Controller
       $brands = DB::table('brands')->orderBy('brand_name','ASC')->get();
       $products = DB::table('products')->where('subcategory_id',$subcategory_id)->paginate(15);
 
-      return view('pages.products',compact('products','categories','brands'));
+       $min_price = DB::table('products')->min('selling_price');
+       $max_price = DB::table('products')->max('selling_price');
+
+      return view('pages.products',compact('products','categories','brands','max_price','min_price'));
 
     }
 

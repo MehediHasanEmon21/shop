@@ -426,7 +426,7 @@
                                         <div class="banner_2_category">{{$mid_slider->brand_name}}</div>
                                         <div class="banner_2_title">{{$mid_slider->product_name}}</div>
                                         <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-                                        <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                                        
                                         <div class="button banner_2_button"><a href="{{ route('product.details',$mid_slider->slug) }}">Explore</a></div>
                                     </div>
                                     

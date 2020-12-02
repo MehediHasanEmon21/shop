@@ -269,10 +269,10 @@ $route = Route::current()->getName();
 
                             <div class="main_nav_menu ml-auto">
                                 <ul class="standard_dropdown main_nav_dropdown">
-                                    <li><a href="{{ url('/') }}">Home<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="{{ route('all.products') }}">Shop<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="{{ route('all.blogs') }}">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="{{route('contact.page')}}">Contact<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a @if($route == 'index') style="color: #007bff" @endif href="{{ url('/') }}">Home<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a @if($route == 'all.products') style="color: #007bff" @endif href="{{ route('all.products') }}">Shop<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a @if($route == 'all.blogs') style="color: #007bff" @endif href="{{ route('all.blogs') }}">Blog<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a @if($route == 'contact.page') style="color: #007bff" @endif href="{{route('contact.page')}}">Contact<i class="fas fa-chevron-down"></i></a></li>
                                 </ul>
                             </div>
 
@@ -446,27 +446,27 @@ $route = Route::current()->getName();
                     <div class="footer_column">
                         <div class="footer_title">Find it Fast</div>
                         <ul class="footer_list">
-                            <li><a href="#">Computers & Laptops</a></li>
-                            <li><a href="#">Cameras & Photos</a></li>
-                            <li><a href="#">Hardware</a></li>
-                            <li><a href="#">Smartphones & Tablets</a></li>
-                            <li><a href="#">TV & Audio</a></li>
+                            @php
+                                $categories_first = DB::table('categories')->where('id','<=',12)->orderBy('id','ASC')->get(); 
+                                $categories_second = DB::table('categories')->where('id','>=',13)->orderBy('id','ASC')->get(); 
+                            @endphp
+
+                            @foreach($categories_first as $cf)
+                            <li><a href="{{url('category/'.$cf->slug)}}">{{$cf->category_name}}</a></li>
+                            @endforeach
+
                         </ul>
-                        <div class="footer_subtitle">Gadgets</div>
-                        <ul class="footer_list">
-                            <li><a href="#">Car Electronics</a></li>
-                        </ul>
+                        
                     </div>
                 </div>
 
                 <div class="col-lg-2">
                     <div class="footer_column">
                         <ul class="footer_list footer_list_2">
-                            <li><a href="#">Video Games & Consoles</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Cameras & Photos</a></li>
-                            <li><a href="#">Hardware</a></li>
-                            <li><a href="#">Computers & Laptops</a></li>
+                            @foreach($categories_second as $cs)
+                            <li><a href="{{url('category/'.$cs->slug)}}">{{$cs->category_name}}</a></li>
+                            @endforeach
+                            
                         </ul>
                     </div>
                 </div>
