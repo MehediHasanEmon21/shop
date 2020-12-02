@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title','Shop')
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/shop_styles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/shop_responsive.css') }}">

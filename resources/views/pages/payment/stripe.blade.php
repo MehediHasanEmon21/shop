@@ -1,12 +1,9 @@
 @extends('layouts.app')
 
-@section('left_sidebar')
-    @include('layouts.include.left_sidebar')
-@endsection
 
 @section('content')
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/contact_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/shop_styles.css') }}">
     <style>
         .StripeElement {
             box-sizing: border-box;

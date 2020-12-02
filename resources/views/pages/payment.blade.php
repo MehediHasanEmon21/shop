@@ -1,12 +1,9 @@
 @extends('layouts.app')
 
-@section('left_sidebar')
-@include('layouts.include.left_sidebar')
-@endsection
 
 @section('content')
 
-<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/contact_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/shop_styles.css') }}">
     <div class="contact_form">
         <div class="container">
             <div class="row">
@@ -115,8 +112,8 @@
                            <div class="form-group">
                                 <ul class="logos_list " >
                                             <li><input type="radio" name="payment" value="stripe"> <img src="{{ asset('frontend/images/mastercard.png') }}" style="width: 100px; height: 60px;"></li>
-                                            <li><input type="radio" name="payment" value="paypal"> <img src="{{ asset('frontend/images/paypal.png') }}" style="width: 100px;"></li>
-                                             <li><input type="radio" name="payment" value="ideal"> <img src="{{ asset('frontend/images/mollie.png') }}" style="width: 100px; height: 80px;"></li>
+                                            {{-- <li><input type="radio" name="payment" value="paypal"> <img src="{{ asset('frontend/images/paypal.png') }}" style="width: 100px;"></li>
+                                             <li><input type="radio" name="payment" value="ideal"> <img src="{{ asset('frontend/images/mollie.png') }}" style="width: 100px; height: 80px;"></li> --}}
                                  </ul>
                             </div><br>
                             <div class="contact_form_button">

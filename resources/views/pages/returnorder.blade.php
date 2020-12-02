@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+<link rel="stylesheet" type="text/css" href="{{ asset('frontend/styles/shop_styles.css') }}">
 
     <div class="contact_form">
         <div class="container">

@@ -163,7 +163,7 @@
                                         <div class="border_active"></div>
                                         <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
                                             <div class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                <img src="{{URL::to($feature_product->image_one)}}" alt="">
+                                                <a href="{{ route('product.details',$feature_product->slug) }}"><img src="{{URL::to($feature_product->image_one)}}" alt=""></a>
                                             </div>
                                             <div class="product_content">
                                                 
@@ -229,7 +229,7 @@
                                     <div class="featured_slider_item">
                                         <div class="border_active"></div>
                                         <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                            <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{URL::to($tp->image_one)}}" alt=""></div>
+                                            <div class="product_image d-flex flex-column align-items-center justify-content-center"><a href="{{ route('product.details',$tp->slug) }}"><img src="{{URL::to($tp->image_one)}}" alt=""></a></div>
                                             <div class="product_content">
                                                 @if(isset($tp->discount_price))
                                                 <div class="product_price discount">${{$tp->discount_price}}<span>${{$tp->selling_price}}</span></div>
@@ -284,7 +284,7 @@
                                     <div class="featured_slider_item">
                                         <div class="border_active"></div>
                                         <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                            <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{URL::to($bp->image_one)}}" alt=""></div>
+                                            <div class="product_image d-flex flex-column align-items-center justify-content-center"><a href="{{ route('product.details',$bp->slug) }}"><img src="{{URL::to($bp->image_one)}}" alt=""></a></div>
                                             <div class="product_content">
                                                 @if(isset($bp->discount_price))
                                                 <div class="product_price discount">${{$bp->discount_price}}<span>${{$bp->selling_price}}</span></div>
@@ -433,7 +433,7 @@
                                 </div>
                                 <div class="col-lg-8 col-md-6 fill_height">
                                     <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="{{URL::to($mid_slider->image_one)}}" style="width: 514px; height: 400px" alt=""></div>
+                                        <div class="banner_2_image"><a href="{{ route('product.details',$mid_slider->slug) }}"><img src="{{URL::to($mid_slider->image_one)}}" style="width: 514px; height: 400px" alt=""></a></div>
                                     </div>
                                 </div>
                             </div>
